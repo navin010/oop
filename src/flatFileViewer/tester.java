@@ -16,6 +16,10 @@ public class tester {
         inputFileObject.readFileWithKeys(field1);
         inputFileObject.closeFile();
 
+        structureReader sr = new structureReader();
+        sr.createList();
+
+
         /*
         fileWriter fileWriterObj = new fileWriter("C:/Java/OOP/src/flatFileViewer/output.txt");
         fileWriterObj.writeToFile("hello output");

@@ -35,19 +35,6 @@ public class fileReader {
         }
     }
 
-
-    public void readCsvFile(String delimiter) throws Exception{
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] values = line.split(delimiter);
-            System.out.println(values[0]);
-            System.out.println(values[1]);
-            System.out.println(values[2]);
-
-        }
-    }
-
     public void closeFile()throws Exception{
         reader.close();
     }
