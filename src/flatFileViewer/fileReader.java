@@ -7,7 +7,6 @@ public class fileReader {
 
     public FileReader file;
     public BufferedReader reader;
-    public String[] lineValues;
 
     //Constructor
     public fileReader(String filePath) throws Exception {
@@ -16,29 +15,8 @@ public class fileReader {
     }
 
     //Methods
-    public void readFile() throws Exception{
-        String text = "";
-        String line = reader.readLine();    //read line by line
-        while (line != null){
-            text += line;
-            line = reader.readLine();
-        }
-        System.out.println(text);
-    }
-
-    public void readFileWithKey(field Field) throws Exception{
-        System.out.println("---read with fields---");
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
-            System.out.println(Field.nameOfField + ":" + line.substring(Field.startPosition,Field.endPosition));
-        }
-    }
-
-
     public void closeFile()throws Exception{
         reader.close();
     }
-
 
 }

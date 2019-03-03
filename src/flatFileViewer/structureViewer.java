@@ -18,13 +18,14 @@ public class structureViewer {
         fileReader fileStructureObj = new fileReader(filePath);
         System.out.println("---read with fields---");
 
-        String line = fileStructureObj.reader.lines().skip(lineNumber).findFirst().get();
+        String line = fileStructureObj.reader.lines().skip(lineNumber).findFirst().get();           //read line number of value lineNumber
         System.out.println(line);
 
         for (field f : fieldArray){
             System.out.println(f.nameOfField + ":" + line.substring(f.startPosition,f.endPosition));
         }
 
+        fileStructureObj.closeFile();
 
     }
 
