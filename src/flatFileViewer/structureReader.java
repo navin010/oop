@@ -13,7 +13,7 @@ public class structureReader {
     }
 
     //method
-    public ArrayList<field> createList(String filePath) throws Exception{
+    public ArrayList<field> createFieldArray(String filePath) throws Exception{
 
         fileReader fileStructureObj = new fileReader(filePath);
 
