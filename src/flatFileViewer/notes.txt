@@ -1,0 +1,6 @@
+/*
+        System.out.println(text.substring(0,5));
+        System.out.println(text.substring(6,11));
+        System.out.println(text.substring(12,15));
+        */
+
