@@ -15,7 +15,7 @@ public class tester {
 
         field field1 = new field("BEP",0, 5);
         field1.showField();
-        field field2 = new field("DES",6, 5);
+        field field2 = new field("DOS",6, 5);
         field2.showField();
         field field3 = new field("JEL",12, 3);
         field3.showField();
