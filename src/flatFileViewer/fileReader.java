@@ -26,7 +26,7 @@ public class fileReader {
         System.out.println(text);
     }
 
-    public void readFileWithKeys(field Field) throws Exception{
+    public void readFileWithKey(field Field) throws Exception{
         System.out.println("---read with fields---");
         String line;
         while ((line = reader.readLine()) != null) {
@@ -34,6 +34,7 @@ public class fileReader {
             System.out.println(Field.nameOfField + ":" + line.substring(Field.startPosition,Field.endPosition));
         }
     }
+
 
     public void closeFile()throws Exception{
         reader.close();

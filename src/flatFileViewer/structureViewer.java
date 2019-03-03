@@ -1,0 +1,32 @@
+package flatFileViewer;
+
+import java.util.ArrayList;
+
+public class structureViewer {
+
+    //vars
+    static ArrayList<field> fieldArray;
+
+    //constructor
+    public structureViewer(ArrayList<field> fieldArray){
+        this.fieldArray = fieldArray;
+    }
+
+    //methods
+    public void viewList(String filePath, int lineNumber) throws Exception{
+
+        fileReader fileStructureObj = new fileReader(filePath);
+        System.out.println("---read with fields---");
+
+        String line = fileStructureObj.reader.lines().skip(lineNumber).findFirst().get();
+        System.out.println(line);
+
+
+        for (field f : fieldArray){
+            f.showField();
+        }
+
+
+    }
+
+}

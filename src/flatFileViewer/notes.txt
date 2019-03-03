@@ -4,3 +4,18 @@
         System.out.println(text.substring(12,15));
         */
 
+
+field field1 = new field("BEP",0, 5);
+        field1.showField();
+        field field2 = new field("DOS",6, 5);
+        field2.showField();
+        field field3 = new field("JEL",12, 3);
+        field3.showField();
+
+
+                field field1 = new field("BEP",0, 5);
+                field1.showField();
+                fileReader inputFileObject = new fileReader("C:/Java/OOP/src/flatFileViewer/input.txt");
+                //inputFileObject.readFile();
+                inputFileObject.readFileWithKey(field1);
+                inputFileObject.closeFile();

@@ -1,7 +1,6 @@
 package flatFileViewer;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class structureReader {
@@ -14,9 +13,9 @@ public class structureReader {
     }
 
     //method
-    public void createList() throws Exception{
+    public ArrayList<field> createList(String filePath) throws Exception{
 
-        fileReader fileStructureObj = new fileReader("C:/Java/OOP/src/flatFileViewer/structure.txt");
+        fileReader fileStructureObj = new fileReader(filePath);
 
         String line;
         while ((line = fileStructureObj.reader.readLine()) != null) {
@@ -25,10 +24,12 @@ public class structureReader {
         }
         fileStructureObj.closeFile();
 
+        //loop through fields in array and call method show fields on each field
         for (field f : fieldArray){
             f.showField();
         }
 
+        return fieldArray;
 
     }
 
