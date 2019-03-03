@@ -21,9 +21,8 @@ public class structureViewer {
         String line = fileStructureObj.reader.lines().skip(lineNumber).findFirst().get();
         System.out.println(line);
 
-
         for (field f : fieldArray){
-            f.showField();
+            System.out.println(f.nameOfField + ":" + line.substring(f.startPosition,f.endPosition));
         }
 
 
