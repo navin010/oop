@@ -12,6 +12,7 @@ public class mainFrame extends JFrame {
     //private JTextArea textArea;
     private textPanel tPanel;
     private JButton btn;
+    private toolbar tbar;
 
     //constructor
     public mainFrame(){
@@ -24,15 +25,18 @@ public class mainFrame extends JFrame {
         //textArea = new JTextArea();
         tPanel = new textPanel();
         btn = new JButton("Click");
+        tbar = new toolbar();
 
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //textArea.append("clicked\n");
+                tPanel.appendText("clicked\n");
 
             }
         });
 
+        add(tbar, BorderLayout.NORTH);
         add(tPanel, BorderLayout.CENTER);
         add(btn, BorderLayout.SOUTH);
 
