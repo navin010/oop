@@ -14,6 +14,9 @@ public class toolbar extends JPanel implements ActionListener {
 
     //constructors
     public toolbar(){
+
+        setBorder(BorderFactory.createEtchedBorder());
+
         btn1 = new JButton("one");
         btn2 = new JButton("two");
 
