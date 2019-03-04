@@ -3,13 +3,17 @@ package swingUI;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class formPanel extends JPanel {
 
-    private JLabel labelOne;
-    private JLabel labelTwo;
-    private JTextField field1;
-    private JTextField field2;
+    private JLabel labelInput;
+    private JLabel labelStructure;
+    private JLabel labelLineNumber;
+    private JTextField fieldInput;
+    private JTextField fieldStructure;
+    private JTextField fieldLineNumber;
     private JButton btnSubmit;
 
     public formPanel(){
@@ -19,52 +23,87 @@ public class formPanel extends JPanel {
         dim.width = 250;
         setPreferredSize(dim);
 
-        Border innerBorder = BorderFactory.createTitledBorder("Add Person");
+        Border innerBorder = BorderFactory.createTitledBorder("Flat File Viewer");
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
-        labelOne = new JLabel("name");
-        labelTwo = new JLabel("occupation");
-        field1 = new JTextField(10);
-        field2 = new JTextField(10);
+        labelInput = new JLabel("Input File");
+        fieldInput = new JTextField(10);
+        labelStructure = new JLabel("Structure File");
+        fieldStructure = new JTextField(10);
+        labelLineNumber = new JLabel("Line Number");
+        fieldLineNumber = new JTextField(10);
         btnSubmit = new JButton("submit");
+
+        btnSubmit.addActionListener(new ActionListener() {          //when submit button is clicked
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = fieldInput.getText();
+                String structure = fieldStructure.getText();
+                String lineNumber = fieldLineNumber.getText();
+            }
+        });
 
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
 
-        gc.weightx = 1;                     //size relative to other cells
-        gc.weighty = 1;                     //size relative to other cells
-
         /////First Row/////
+        gc.weightx = 1;                     //size relative to other cells
+        gc.weighty = 0.1;                   //size relative to other cells
 
         gc.gridx = 0;                       //start position x
         gc.gridy = 0;                       //start position y
         gc.fill = GridBagConstraints.NONE;  //decides whether to take up all the space in a cell or not
         gc.anchor = GridBagConstraints.LINE_END;        //anchor the label to the right
-        add(labelOne, gc);
+        gc.insets = new Insets(0,0,0,5);
+        add(labelInput, gc);
 
         gc.gridx = 1;
         gc.gridy = 0;
         gc.anchor = GridBagConstraints.LINE_START;      //anchor the field to the left to join the label and field together
-        add(field1, gc);
+        gc.insets = new Insets(0,0,0,0);
+        add(fieldInput, gc);
 
         /////Second Row/////
+        gc.weightx = 1;                     //size relative to other cells
+        gc.weighty = 0.1;                   //size relative to other cells
 
         gc.gridx = 0;
         gc.gridy = 1;
         gc.anchor = GridBagConstraints.LINE_END;
-        add(labelTwo, gc);
+        gc.insets = new Insets(0,0,0,5);
+        add(labelStructure, gc);
 
         gc.gridx = 1;
         gc.gridy = 1;
         gc.anchor = GridBagConstraints.LINE_START;
-        add(field2, gc);
+        gc.insets = new Insets(0,0,0,0);
+        add(fieldStructure, gc);
 
         /////Third Row/////
+        gc.weightx = 1;                     //size relative to other cells
+        gc.weighty = 0.1;                   //size relative to other cells
+
+        gc.gridx = 0;
+        gc.gridy = 2;
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.insets = new Insets(0,0,0,5);
+        add(labelLineNumber, gc);
 
         gc.gridx = 1;
         gc.gridy = 2;
         gc.anchor = GridBagConstraints.LINE_START;
+        gc.insets = new Insets(0,0,0,0);
+        add(fieldLineNumber, gc);
+
+        /////Fourth Row/////
+        gc.weightx = 1;                     //size relative to other cells
+        gc.weighty = 2;                     //size relative to other cells
+
+        gc.gridx = 1;
+        gc.gridy = 3;
+        gc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gc.insets = new Insets(0,0,0,0);
         add(btnSubmit, gc);
 
 

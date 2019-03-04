@@ -16,7 +16,7 @@ public class mainFrame extends JFrame {
 
     //constructor
     public mainFrame(){
-        super("Hello World");                            //call JFrame constructor
+        super("FF Viewer");                             //call JFrame constructor
         setSize(600,500);                       //calling methods from super directly
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //exit program when gui is closed
         setVisible(true);
