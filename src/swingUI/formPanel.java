@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class formPanel extends JPanel {
 
+    //vars
     private JLabel labelInput;
     private JLabel labelStructure;
     private JLabel labelLineNumber;
@@ -15,7 +16,9 @@ public class formPanel extends JPanel {
     private JTextField fieldStructure;
     private JTextField fieldLineNumber;
     private JButton btnSubmit;
+    private formListener fListener;
 
+    //constructor
     public formPanel(){
 
         Dimension dim = getPreferredSize();
@@ -41,6 +44,10 @@ public class formPanel extends JPanel {
                 String input = fieldInput.getText();
                 String structure = fieldStructure.getText();
                 String lineNumber = fieldLineNumber.getText();
+                formEvent event = new formEvent(this, input, structure, lineNumber);
+                if (fListener != null){
+                    fListener.formEventOccured(event);
+                }
             }
         });
 
@@ -105,8 +112,11 @@ public class formPanel extends JPanel {
         gc.anchor = GridBagConstraints.FIRST_LINE_START;
         gc.insets = new Insets(0,0,0,0);
         add(btnSubmit, gc);
+    }
 
-
+    //methods
+    public void setFormListener(formListener listener){
+        this.fListener = listener;
     }
 
 }

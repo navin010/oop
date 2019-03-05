@@ -41,6 +41,17 @@ public class mainFrame extends JFrame {
             }
         });
 
+        fPanel.setFormListener(new formListener() {
+            @Override
+            public void formEventOccured(formEvent e) {
+                String input = e.getInput();
+                String structure = e.getStructure();
+                String lineNumber = e.getLineNumber();
+
+                tPanel.appendText("input:" + input + " structure:" + structure + " lineNumber:" + lineNumber + "\n");
+            }
+        });
+
 
     }
 
