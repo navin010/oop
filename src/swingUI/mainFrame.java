@@ -94,6 +94,7 @@ public class mainFrame extends JFrame {
         String allText = v.viewFieldsInLine(input, lineNumberInt);
 
         //Append to text panel
+        allText = String.format("***Line Number %s***\n%s\n", (lineNumber), allText);    //wrap output in header/footer
         tPanel.appendText(allText);
 
     }
