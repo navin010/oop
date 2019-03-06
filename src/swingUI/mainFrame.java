@@ -1,13 +1,12 @@
 package swingUI;
 
+import swingUI.flatFile.field;
 import swingUI.flatFile.structureReader;
 import swingUI.flatFile.viewer;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class mainFrame extends JFrame {
 
@@ -16,6 +15,8 @@ public class mainFrame extends JFrame {
     private textPanel tPanel;
     private toolbar tbar;
     private formPanel fPanel;
+    private String globalStructure = "";
+    static ArrayList<field> fieldArray = new ArrayList<field>();
 
     //constructor
     public mainFrame(){
@@ -65,9 +66,24 @@ public class mainFrame extends JFrame {
 
     //methods
     public void viewFieldsOnLine(String input, String structure, String lineNumber) throws Exception {
-        structureReader sr = new structureReader();
-        viewer v = new viewer(sr.createFieldArray("C:/Java/OOP/src/flatFileViewer/structure.txt"));
+
+        System.out.println("viewFieldsOnLine local structure: " + structure);
+        System.out.println("viewFieldsOnLine global structure: " + this.globalStructure);
+
+        //Generate new structure object if the structure file path changes
+        if (this.globalStructure.equals(structure)){
+            System.out.println("struc equal");
+        }
+        else {
+            System.out.println("struc not equal");
+            this.globalStructure = structure;
+            structureReader sr = new structureReader();
+            this.fieldArray = sr.createFieldArray("C:/Java/OOP/src/flatFileViewer/structure.txt");
+        }
+
+        viewer v = new viewer(fieldArray);
         v.viewFieldsInLine("C:/Java/OOP/src/flatFileViewer/input.txt", 1);
+
     }
 
 }

@@ -25,6 +25,7 @@ public class structureReader {
         fileStructureObj.closeFile();
 
         //loop through fields in array and call method show fields on each field
+        System.out.println("---viewFieldsInFieldArray---");
         for (field f : fieldArray){
             f.showField();
         }
