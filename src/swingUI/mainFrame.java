@@ -82,14 +82,14 @@ public class mainFrame extends JFrame {
         }
 
         //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
-        int lineNumberint = Integer.parseInt(lineNumber);
-        lineNumberint = lineNumberint - 1;
+        int lineNumberInt = Integer.parseInt(lineNumber);
+        lineNumberInt = lineNumberInt - 1;
 
-
-        //Generate viewer object and
+        //Generate viewer object and return concatenated string
         viewer v = new viewer(fieldArray);
-        String allText = v.viewFieldsInLine(input, lineNumberint);
+        String allText = v.viewFieldsInLine(input, lineNumberInt);
 
+        //Append to text panel
         tPanel.appendText(allText);
 
     }
