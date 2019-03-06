@@ -15,6 +15,8 @@ public class structureReader {
     //method
     public ArrayList<field> createFieldArray(String filePath) throws Exception{
 
+        clearFieldArray();              //blank the field array otherwise fields are duplicated for sr structureReader reader in main frame
+
         fileReader fileStructureObj = new fileReader(filePath);
 
         String line;
@@ -32,6 +34,11 @@ public class structureReader {
 
         return fieldArray;
 
+    }
+
+
+    public void clearFieldArray(){
+        fieldArray = new ArrayList<field>();
     }
 
 

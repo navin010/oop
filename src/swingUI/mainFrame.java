@@ -15,7 +15,7 @@ public class mainFrame extends JFrame {
     private toolbar tbar;
     private formPanel fPanel;
     private String globalStructure = "";
-    static ArrayList<field> fieldArray = new ArrayList<field>();
+    //static ArrayList<field> fieldArray = new ArrayList<field>();
 
     //constructor
     public mainFrame(){
@@ -25,7 +25,6 @@ public class mainFrame extends JFrame {
         setVisible(true);
 
         setLayout(new BorderLayout());
-        //textArea = new JTextArea();
         tPanel = new textPanel();
         tbar = new toolbar();
         fPanel = new formPanel();
@@ -71,19 +70,8 @@ public class mainFrame extends JFrame {
     //methods
     public void viewFieldsOnLine(String input, String structure, String lineNumber) throws Exception {
 
-        System.out.println("viewFieldsOnLine local structure: " + structure);
-        System.out.println("viewFieldsOnLine global structure: " + this.globalStructure);
-
-        //Generate new structure/field array if the structure file path changes
-        if (this.globalStructure.equals(structure)){
-            System.out.println("struc equal");
-        }
-        else {
-            System.out.println("struc not equal");
-            this.globalStructure = structure;
-            structureReader sr = new structureReader();
-            this.fieldArray = sr.createFieldArray(structure);
-        }
+        structureReader sr = new structureReader();
+        ArrayList<field> fieldArray = sr.createFieldArray(structure);
 
         //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
         int lineNumberInt = Integer.parseInt(lineNumber);

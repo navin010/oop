@@ -18,11 +18,13 @@ public class formPanel extends JPanel {
     private JButton btnSubmit;
     private formListener fListener;
 
+    private JFileChooser fileOpen;
+
     //constructor
     public formPanel(){
 
         Dimension dim = getPreferredSize();
-        System.out.println(dim);
+        //System.out.println(dim);
         dim.width = 250;
         setPreferredSize(dim);
 
@@ -37,6 +39,8 @@ public class formPanel extends JPanel {
         labelLineNumber = new JLabel("Line Number");
         fieldLineNumber = new JTextField(10);
         btnSubmit = new JButton("Submit");
+
+        fileOpen = new JFileChooser();
 
         btnSubmit.addActionListener(new ActionListener() {          //when submit button is clicked
             @Override
