@@ -36,7 +36,7 @@ public class formPanel extends JPanel {
         fieldStructure = new JTextField(10);
         labelLineNumber = new JLabel("Line Number");
         fieldLineNumber = new JTextField(10);
-        btnSubmit = new JButton("submit");
+        btnSubmit = new JButton("Submit");
 
         btnSubmit.addActionListener(new ActionListener() {          //when submit button is clicked
             @Override

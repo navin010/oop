@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class mainFrame extends JFrame {
 
     //vars
-    //private JTextArea textArea;
     private textPanel tPanel;
     private toolbar tbar;
     private formPanel fPanel;
@@ -32,16 +31,22 @@ public class mainFrame extends JFrame {
         fPanel = new formPanel();
 
         add(fPanel, BorderLayout.WEST);
-        add(tbar, BorderLayout.NORTH);
+        add(tbar, BorderLayout.SOUTH);
         add(tPanel, BorderLayout.CENTER);
 
-        //tbar.setTextPanel(tPanel);
-
+        /*
         tbar.setStringListener(new stringListener() {
             @Override
             public void textEmitted(String text) {
-                //System.out.println(text);
-                tPanel.appendText(text);
+                //tPanel.appendText(text);
+            }
+        });
+        */
+
+        tbar.setButtonListener(new buttonListener() {
+            @Override
+            public void buttonPressed() {
+                tPanel.clearText();
             }
         });
 
@@ -52,7 +57,6 @@ public class mainFrame extends JFrame {
                 String structure = e.getStructure();
                 String lineNumber = e.getLineNumber();
 
-                //tPanel.appendText("input:" + input + " structure:" + structure + " lineNumber:" + lineNumber + "\n");
                 try {
                     viewFieldsOnLine(input, structure, lineNumber);
                 } catch (Exception e1) {

@@ -8,24 +8,20 @@ import java.awt.event.ActionListener;
 public class toolbar extends JPanel implements ActionListener {
 
     //vars
-    private JButton btn1;
-    private JButton btn2;
+    private JButton btnClear;
     private stringListener textListener;
+    private buttonListener buttonListener;
 
     //constructors
     public toolbar(){
 
         setBorder(BorderFactory.createEtchedBorder());
 
-        btn1 = new JButton("one");
-        btn2 = new JButton("two");
-
-        btn1.addActionListener(this);
-        btn2.addActionListener(this);
-
-        setLayout(new FlowLayout(FlowLayout.LEFT));       //flow layout for left to right layout, add start position from left
-        add(btn1);
-        add(btn2);
+        btnClear = new JButton("Clear");
+        btnClear.addActionListener(this);
+        
+        setLayout(new FlowLayout(FlowLayout.RIGHT));       //flow layout for left to right layout, add start position from left
+        add(btnClear);
 
     }
 
@@ -34,17 +30,16 @@ public class toolbar extends JPanel implements ActionListener {
         this.textListener = listener;
     }
 
+    public void setButtonListener(buttonListener listener){
+        this.buttonListener = listener;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton buttonClicked = (JButton) e.getSource();       //cast source value to a JButton type
-        if (buttonClicked == btn1){
-            if(textListener != null){
-                textListener.textEmitted("bt1 clicked\n");
-            }
-        }
-        else {
-            if(textListener != null){
-                textListener.textEmitted("bt2 clicked\n");
+        if (buttonClicked == btnClear){
+            if(buttonListener != null){                         //ensures button listener was passed in to class
+                buttonListener.buttonPressed();
             }
         }
     }
