@@ -70,7 +70,7 @@ public class mainFrame extends JFrame {
         System.out.println("viewFieldsOnLine local structure: " + structure);
         System.out.println("viewFieldsOnLine global structure: " + this.globalStructure);
 
-        //Generate new structure object if the structure file path changes
+        //Generate new structure/field array if the structure file path changes
         if (this.globalStructure.equals(structure)){
             System.out.println("struc equal");
         }
@@ -78,11 +78,19 @@ public class mainFrame extends JFrame {
             System.out.println("struc not equal");
             this.globalStructure = structure;
             structureReader sr = new structureReader();
-            this.fieldArray = sr.createFieldArray("C:/Java/OOP/src/flatFileViewer/structure.txt");
+            this.fieldArray = sr.createFieldArray(structure);
         }
 
+        //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
+        int lineNumberint = Integer.parseInt(lineNumber);
+        lineNumberint = lineNumberint - 1;
+
+
+        //Generate viewer object and
         viewer v = new viewer(fieldArray);
-        v.viewFieldsInLine("C:/Java/OOP/src/flatFileViewer/input.txt", 1);
+        String allText = v.viewFieldsInLine(input, lineNumberint);
+
+        tPanel.appendText(allText);
 
     }
 

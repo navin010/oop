@@ -1,0 +1,2 @@
+C:/Java/OOP/src/flatFileViewer/structure.txt
+C:/Java/OOP/src/flatFileViewer/input.txt
