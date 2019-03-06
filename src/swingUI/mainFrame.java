@@ -1,5 +1,8 @@
 package swingUI;
 
+import swingUI.flatFile.structureReader;
+import swingUI.flatFile.viewer;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.BorderLayout;
@@ -48,7 +51,12 @@ public class mainFrame extends JFrame {
                 String structure = e.getStructure();
                 String lineNumber = e.getLineNumber();
 
-                tPanel.appendText("input:" + input + " structure:" + structure + " lineNumber:" + lineNumber + "\n");
+                //tPanel.appendText("input:" + input + " structure:" + structure + " lineNumber:" + lineNumber + "\n");
+                try {
+                    viewFieldsOnLine(input, structure, lineNumber);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -56,6 +64,10 @@ public class mainFrame extends JFrame {
     }
 
     //methods
-
+    public void viewFieldsOnLine(String input, String structure, String lineNumber) throws Exception {
+        structureReader sr = new structureReader();
+        viewer v = new viewer(sr.createFieldArray("C:/Java/OOP/src/flatFileViewer/structure.txt"));
+        v.viewFieldsInLine("C:/Java/OOP/src/flatFileViewer/input.txt", 1);
+    }
 
 }

@@ -44,9 +44,11 @@ public class formPanel extends JPanel {
                 String input = fieldInput.getText();
                 String structure = fieldStructure.getText();
                 String lineNumber = fieldLineNumber.getText();
+                //form event is basically a default java event extended with a few vars
                 formEvent event = new formEvent(this, input, structure, lineNumber);
+                //check if fListener has been passed in from the main frame via method setFormListener, if it has not fListener=null
                 if (fListener != null){
-                    fListener.formEventOccured(event);
+                    fListener.formEventOccured(event);      //call formEventOccured method in main frame with new event
                 }
             }
         });
@@ -116,7 +118,7 @@ public class formPanel extends JPanel {
 
     //methods
     public void setFormListener(formListener listener){
-        this.fListener = listener;
+        this.fListener = listener;          //assign listener to class variable fListener, otherwise fListener will be null
     }
 
 }
