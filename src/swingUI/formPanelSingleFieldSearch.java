@@ -31,8 +31,8 @@ public class formPanelSingleFieldSearch extends JPanel {
         dim.width = 250;
         setPreferredSize(dim);          //set panel size, default size too small
 
-        Border innerBorder = BorderFactory.createTitledBorder("Single Field Viewer");
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
+        Border innerBorder = BorderFactory.createTitledBorder("Single Field Viewer");
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
         labelInput = new JLabel("Input File");

@@ -28,8 +28,8 @@ public class formPanel extends JPanel {
         dim.width = 250;
         setPreferredSize(dim);
 
-        Border innerBorder = BorderFactory.createTitledBorder("Multiple Field Viewer");
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
+        Border innerBorder = BorderFactory.createTitledBorder("Multiple Field Viewer");
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
         labelInput = new JLabel("Input File");

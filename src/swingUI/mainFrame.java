@@ -41,7 +41,7 @@ public class mainFrame extends JFrame {
         c1.show(fPanelJoined,"singlePanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
 
         add(fPanelJoined, BorderLayout.WEST);
-        add(tbar, BorderLayout.SOUTH);
+        add(tbar, BorderLayout.NORTH);
         add(tPanel, BorderLayout.CENTER);
 
 

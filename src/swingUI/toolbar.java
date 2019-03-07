@@ -36,13 +36,13 @@ public class toolbar extends JPanel implements ActionListener {
         */
 
         Border outerBorder = BorderFactory.createEtchedBorder();  //add empty border around title border for padding
-        Border innerBorder = BorderFactory.createEmptyBorder(5,5,5,5);
+        Border innerBorder = BorderFactory.createEmptyBorder(3,3,3,3);
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         Box.createHorizontalBox();
         add(btnPanelSingle);
-        add(Box.createHorizontalStrut(1));          //add space between single and multiple button, box layout does not add spaces automatically
+        add(Box.createHorizontalStrut(3));          //add space between single and multiple button, box layout does not add spaces automatically
         add(btnPanelMultiple);
         add(Box.createHorizontalGlue());                  //glue the next buttons from this point to right
         add(btnClear);
