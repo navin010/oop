@@ -5,7 +5,7 @@ import swingUI.flatFile.structureReader;
 import swingUI.flatFile.viewer;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class mainFrame extends JFrame {
@@ -13,9 +13,12 @@ public class mainFrame extends JFrame {
     //vars
     private textPanel tPanel;
     private toolbar tbar;
-    private formPanel fPanel;
+    private formPanel fPanelMultiple;
+    private formPanelSingleFieldSearch fPanelSingle;
     private String globalStructure = "";
     //static ArrayList<field> fieldArray = new ArrayList<field>();
+    private CardLayout c1;
+    private JPanel fPanelJoined;
 
     //constructor
     public mainFrame(){
@@ -27,29 +30,49 @@ public class mainFrame extends JFrame {
         setLayout(new BorderLayout());
         tPanel = new textPanel();
         tbar = new toolbar();
-        fPanel = new formPanel();
+        fPanelMultiple = new formPanel();
+        fPanelSingle = new formPanelSingleFieldSearch();
 
-        add(fPanel, BorderLayout.WEST);
+        fPanelJoined = new JPanel(new CardLayout());
+        fPanelJoined.add(fPanelMultiple, "multiPanel");
+        fPanelJoined.add(fPanelSingle, "singlePanel");
+        c1 = (CardLayout) (fPanelJoined.getLayout());
+
+        c1.show(fPanelJoined,"multiPanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
+
+        add(fPanelJoined, BorderLayout.WEST);
         add(tbar, BorderLayout.SOUTH);
         add(tPanel, BorderLayout.CENTER);
 
-        /*
+
         tbar.setStringListener(new stringListener() {
             @Override
             public void textEmitted(String text) {
-                //tPanel.appendText(text);
+
+                if (text == "clear"){
+                    //tPanel.appendText(text);
+                    tPanel.clearText();
+                }
+                else if (text == "multiple"){
+                    c1.show(fPanelJoined,"multiPanel");
+                }
+                else if (text == "single"){
+                    c1.show(fPanelJoined,"singlePanel");
+                }
+
             }
         });
-        */
 
+        /*
         tbar.setButtonListener(new buttonListener() {
             @Override
             public void buttonPressed() {
                 tPanel.clearText();
             }
         });
+        */
 
-        fPanel.setFormListener(new formListener() {
+        fPanelMultiple.setFormListener(new formListener() {
             @Override
             public void formEventOccured(formEvent e) {
                 String input = e.getInput();
