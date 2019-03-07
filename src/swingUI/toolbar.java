@@ -1,6 +1,7 @@
 package swingUI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,14 +24,27 @@ public class toolbar extends JPanel implements ActionListener {
         btnPanelSingle = new JButton("Single");
         btnClear = new JButton("Clear");
 
-
         btnPanelMultiple.addActionListener(this);
         btnPanelSingle.addActionListener(this);
         btnClear.addActionListener(this);
-        
-        setLayout(new FlowLayout(FlowLayout.RIGHT));       //flow layout for left to right layout, add start position from left
-        add(btnPanelMultiple);
+
+        /*
+        setLayout(new FlowLayout(FlowLayout.LEFT));       //flow layout for left to right layout, add start position from left
         add(btnPanelSingle);
+        add(btnPanelMultiple);
+        add(btnClear);
+        */
+
+        Border outerBorder = BorderFactory.createEtchedBorder();  //add empty border around title border for padding
+        Border innerBorder = BorderFactory.createEmptyBorder(5,5,5,5);
+        setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
+
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        Box.createHorizontalBox();
+        add(btnPanelSingle);
+        add(Box.createHorizontalStrut(1));          //add space between single and multiple button, box layout does not add spaces automatically
+        add(btnPanelMultiple);
+        add(Box.createHorizontalGlue());                  //glue the next buttons from this point to right
         add(btnClear);
 
     }

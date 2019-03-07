@@ -38,7 +38,7 @@ public class mainFrame extends JFrame {
         fPanelJoined.add(fPanelSingle, "singlePanel");
         c1 = (CardLayout) (fPanelJoined.getLayout());
 
-        c1.show(fPanelJoined,"multiPanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
+        c1.show(fPanelJoined,"singlePanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
 
         add(fPanelJoined, BorderLayout.WEST);
         add(tbar, BorderLayout.SOUTH);
