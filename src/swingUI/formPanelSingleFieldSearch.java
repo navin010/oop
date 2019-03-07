@@ -38,6 +38,9 @@ public class formPanelSingleFieldSearch extends JPanel {
         labelInput = new JLabel("Input File");
         fieldInput = new JTextField(10);
 
+        labelLineNumber = new JLabel("Line Number");
+        fieldLineNumber = new JTextField(10);
+
         labelNameOfField = new JLabel("Name Of Field");
         fieldNameOfField = new JTextField(10);
 
@@ -47,19 +50,16 @@ public class formPanelSingleFieldSearch extends JPanel {
         labelNumberOfChars = new JLabel("Number Of Chars");     //Jlabel looks like it has a max of 15 chars, otherwise messes up format
         fieldNumberOfChars = new JTextField(10);
 
-        labelLineNumber = new JLabel("Line Number");
-        fieldLineNumber = new JTextField(10);
-
         btnSubmit = new JButton("Submit");
 
         btnSubmit.addActionListener(new ActionListener() {          //when submit button is clicked
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = fieldInput.getText();
+                String lineNumber = fieldLineNumber.getText();
                 String nameOfField = fieldNameOfField.getText();
                 String startPosition = fieldStartPosition.getText();
                 String numberOfChars = fieldNumberOfChars.getText();
-                String lineNumber = fieldLineNumber.getText();
 
                 //form event is basically a default java event extended with a few vars, using constructor for single field event
                 formEvent event = new formEvent(this, input, nameOfField, startPosition, numberOfChars, lineNumber);
@@ -97,13 +97,13 @@ public class formPanelSingleFieldSearch extends JPanel {
         gc.gridy = 1;
         gc.anchor = GridBagConstraints.LINE_END;
         gc.insets = new Insets(0,0,0,5);
-        add(labelNameOfField, gc);
+        add(labelLineNumber, gc);
 
         gc.gridx = 1;
         gc.gridy = 1;
         gc.anchor = GridBagConstraints.LINE_START;
         gc.insets = new Insets(0,0,0,0);
-        add(fieldNameOfField, gc);
+        add(fieldLineNumber, gc);
 
         /////Third Row/////
         gc.weightx = 1;                     //size relative to other cells
@@ -113,13 +113,13 @@ public class formPanelSingleFieldSearch extends JPanel {
         gc.gridy = 2;
         gc.anchor = GridBagConstraints.LINE_END;
         gc.insets = new Insets(0,0,0,5);
-        add(labelStartPosition, gc);
+        add(labelNameOfField, gc);
 
         gc.gridx = 1;
         gc.gridy = 2;
         gc.anchor = GridBagConstraints.LINE_START;
         gc.insets = new Insets(0,0,0,0);
-        add(fieldStartPosition, gc);
+        add(fieldNameOfField, gc);
 
         /////Fourth Row/////
         gc.weightx = 1;                     //size relative to other cells
@@ -129,13 +129,13 @@ public class formPanelSingleFieldSearch extends JPanel {
         gc.gridy = 3;
         gc.anchor = GridBagConstraints.LINE_END;
         gc.insets = new Insets(0,0,0,5);
-        add(labelNumberOfChars, gc);
+        add(labelStartPosition, gc);
 
         gc.gridx = 1;
         gc.gridy = 3;
         gc.anchor = GridBagConstraints.LINE_START;
         gc.insets = new Insets(0,0,0,0);
-        add(fieldNumberOfChars, gc);
+        add(fieldStartPosition, gc);
 
         /////Fifth Row/////
         gc.weightx = 1;                     //size relative to other cells
@@ -145,13 +145,13 @@ public class formPanelSingleFieldSearch extends JPanel {
         gc.gridy = 4;
         gc.anchor = GridBagConstraints.LINE_END;
         gc.insets = new Insets(0,0,0,5);
-        add(labelLineNumber, gc);
+        add(labelNumberOfChars, gc);
 
         gc.gridx = 1;
         gc.gridy = 4;
         gc.anchor = GridBagConstraints.LINE_START;
         gc.insets = new Insets(0,0,0,0);
-        add(fieldLineNumber, gc);
+        add(fieldNumberOfChars, gc);
 
         /////Sixth Row/////
         gc.weightx = 1;                     //size relative to other cells
