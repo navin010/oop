@@ -7,6 +7,7 @@ public class structureReader {
 
     //vars
     static ArrayList<field> fieldArray = new ArrayList<field>();
+    static ArrayList<field> fieldArraySingle = new ArrayList<field>();
 
     //constructor
     public structureReader(){
@@ -37,9 +38,27 @@ public class structureReader {
     }
 
 
+    public ArrayList<field> createFieldArraySingle(String nameOfField, String startPosition, String numberOfChars){
+
+        System.out.println(nameOfField);
+        System.out.println(startPosition);
+        System.out.println(numberOfChars);
+
+
+        clearFieldArraySingle();              //blank the field array otherwise fields are duplicated for sr structureReader reader in main frame, can also remove global class vars if desired
+        fieldArraySingle.add(new field(nameOfField,Integer.parseInt(startPosition),Integer.parseInt(numberOfChars)));
+
+        return fieldArraySingle;
+    }
+
+
+
     public void clearFieldArray(){
         fieldArray = new ArrayList<field>();
     }
 
+    public void clearFieldArraySingle(){
+        fieldArraySingle = new ArrayList<field>();
+    }
 
 }

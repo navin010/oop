@@ -58,7 +58,7 @@ public class formPanelSingleFieldSearch extends JPanel {
                 String input = fieldInput.getText();
                 String nameOfField = fieldNameOfField.getText();
                 String startPosition = fieldStartPosition.getText();
-                String numberOfChars = labelNumberOfChars.getText();
+                String numberOfChars = fieldNumberOfChars.getText();
                 String lineNumber = fieldLineNumber.getText();
 
                 //form event is basically a default java event extended with a few vars, using constructor for single field event

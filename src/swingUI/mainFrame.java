@@ -97,8 +97,11 @@ public class mainFrame extends JFrame {
                 String startPosition = e.getStartPosition();
                 String numberOfChars = e.getNumberOfChars();
                 String lineNumber = e.getLineNumber();
-                System.out.println(input+" "+nameOfField+" "+startPosition+" "+numberOfChars+" "+lineNumber);
-
+                try {
+                    viewFieldsOnLineSingle(input, nameOfField, startPosition, numberOfChars, lineNumber);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -110,6 +113,24 @@ public class mainFrame extends JFrame {
 
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArray(structure);
+
+        //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
+        int lineNumberInt = Integer.parseInt(lineNumber);
+        lineNumberInt = lineNumberInt - 1;
+
+        //Generate viewer object and return concatenated string
+        viewer v = new viewer(fieldArray);
+        String allText = v.viewFieldsInLine(input, lineNumberInt);
+
+        //Append to text panel
+        allText = String.format("***Line Number %s***\n%s\n", (lineNumber), allText);    //wrap output in header/footer
+        tPanel.appendText(allText);
+
+    }
+
+    public void viewFieldsOnLineSingle(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
+        structureReader sr = new structureReader();
+        ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
 
         //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
         int lineNumberInt = Integer.parseInt(lineNumber);
