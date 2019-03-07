@@ -8,6 +8,9 @@ public class formEvent extends EventObject {            //EventObject is root of
     private String input;
     private String structure;
     private String lineNumber;
+    private String nameOfField;
+    private String startPosition;
+    private String numberOfChars;
 
     //constructor
     public formEvent(Object source) {
@@ -18,6 +21,15 @@ public class formEvent extends EventObject {            //EventObject is root of
         super(source);
         this.input = input;
         this.structure = structure;
+        this.lineNumber = lineNumber;
+    }
+
+    public formEvent(Object source, String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) {
+        super(source);
+        this.input = input;
+        this.nameOfField = nameOfField;
+        this.startPosition = startPosition;
+        this.numberOfChars = numberOfChars;
         this.lineNumber = lineNumber;
     }
 
@@ -46,4 +58,27 @@ public class formEvent extends EventObject {            //EventObject is root of
         this.lineNumber = lineNumber;
     }
 
+    public String getNameOfField() {
+        return nameOfField;
+    }
+
+    public void setNameOfField(String nameOfField) {
+        this.nameOfField = nameOfField;
+    }
+
+    public String getStartPosition() {
+        return startPosition;
+    }
+
+    public void setStartPosition(String startPosition) {
+        this.startPosition = startPosition;
+    }
+
+    public String getNumberOfChars() {
+        return numberOfChars;
+    }
+
+    public void setNumberOfChars(String numberOfChars) {
+        this.numberOfChars = numberOfChars;
+    }
 }

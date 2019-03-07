@@ -75,6 +75,7 @@ public class mainFrame extends JFrame {
         fPanelMultiple.setFormListener(new formListener() {
             @Override
             public void formEventOccured(formEvent e) {
+                System.out.println("multi");
                 String input = e.getInput();
                 String structure = e.getStructure();
                 String lineNumber = e.getLineNumber();
@@ -84,6 +85,20 @@ public class mainFrame extends JFrame {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
+            }
+        });
+
+        fPanelSingle.setFormListener(new formListener() {
+            @Override
+            public void formEventOccured(formEvent e) {
+                System.out.println("single");
+                String input = e.getInput();
+                String nameOfField = e.getNameOfField();
+                String startPosition = e.getStartPosition();
+                String numberOfChars = e.getNumberOfChars();
+                String lineNumber = e.getLineNumber();
+                System.out.println(input+" "+nameOfField+" "+startPosition+" "+numberOfChars+" "+lineNumber);
+
             }
         });
 

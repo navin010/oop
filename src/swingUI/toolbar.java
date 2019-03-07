@@ -50,19 +50,19 @@ public class toolbar extends JPanel implements ActionListener {
         if (buttonClicked == btnClear){
             if(textListener != null){                         //ensures string listener was passed in to class
                 textListener.textEmitted("clear");
-                System.out.println("clear button");
+                //System.out.println("clear button");
             }
         }
         else if (buttonClicked == btnPanelSingle){
             if(textListener != null){                         //ensures button listener was passed in to class
                 textListener.textEmitted("single");
-                System.out.println("single button");
+                //System.out.println("single button");
             }
         }
         else if (buttonClicked == btnPanelMultiple){
             if(textListener != null){                         //ensures button listener was passed in to class
                 textListener.textEmitted("multiple");
-                System.out.println("multiple button");
+                //System.out.println("multiple button");
             }
         }
     }

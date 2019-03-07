@@ -28,7 +28,7 @@ public class formPanel extends JPanel {
         dim.width = 250;
         setPreferredSize(dim);
 
-        Border innerBorder = BorderFactory.createTitledBorder("Flat File Viewer");
+        Border innerBorder = BorderFactory.createTitledBorder("Multiple Field Viewer");
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 

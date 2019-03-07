@@ -31,7 +31,7 @@ public class formPanelSingleFieldSearch extends JPanel {
         dim.width = 250;
         setPreferredSize(dim);          //set panel size, default size too small
 
-        Border innerBorder = BorderFactory.createTitledBorder("Flat File Viewer");
+        Border innerBorder = BorderFactory.createTitledBorder("Single Field Viewer");
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
@@ -56,11 +56,16 @@ public class formPanelSingleFieldSearch extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String input = fieldInput.getText();
-                String structure = fieldNameOfField.getText();
-                String lineNumber = fieldLineNumber.getText();
+                String nameOfField = fieldNameOfField.getText();
                 String startPosition = fieldStartPosition.getText();
                 String numberOfChars = labelNumberOfChars.getText();
+                String lineNumber = fieldLineNumber.getText();
 
+                //form event is basically a default java event extended with a few vars, using constructor for single field event
+                formEvent event = new formEvent(this, input, nameOfField, startPosition, numberOfChars, lineNumber);
+                if (fListener != null){
+                    fListener.formEventOccured(event);      //call formEventOccured method in main frame under fsinglePanel with new event
+                }
             }
         });
 
