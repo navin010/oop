@@ -19,10 +19,11 @@ public class mainFrame extends JFrame {
     //static ArrayList<field> fieldArray = new ArrayList<field>();
     private CardLayout c1;
     private JPanel fPanelJoined;
+    private JTabbedPane tabbedPane;
 
     //constructor
     public mainFrame(){
-        super("FF Viewer");                             //call JFrame constructor
+        super("Flat File Viewer");                       //call JFrame constructor
         setSize(600,500);                       //calling methods from super directly
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //exit program when gui is closed
         setVisible(true);
@@ -33,15 +34,22 @@ public class mainFrame extends JFrame {
         fPanelMultiple = new formPanel();
         fPanelSingle = new formPanelSingleFieldSearch();
 
+        tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("Single Field",fPanelSingle);
+        tabbedPane.addTab("Multiple Field",fPanelMultiple);
+
+        /*
         fPanelJoined = new JPanel(new CardLayout());
         fPanelJoined.add(fPanelMultiple, "multiPanel");
         fPanelJoined.add(fPanelSingle, "singlePanel");
         c1 = (CardLayout) (fPanelJoined.getLayout());
 
         c1.show(fPanelJoined,"singlePanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
+        */
 
-        add(fPanelJoined, BorderLayout.WEST);
-        add(tbar, BorderLayout.NORTH);
+        add(tabbedPane, BorderLayout.WEST);
+        //add(fPanelJoined, BorderLayout.WEST);
+        add(tbar, BorderLayout.SOUTH);
         add(tPanel, BorderLayout.CENTER);
 
 
@@ -53,13 +61,14 @@ public class mainFrame extends JFrame {
                     //tPanel.appendText(text);
                     tPanel.clearText();
                 }
+                /*
                 else if (text == "multiple"){
                     c1.show(fPanelJoined,"multiPanel");
                 }
                 else if (text == "single"){
                     c1.show(fPanelJoined,"singlePanel");
                 }
-
+                */
             }
         });
 
@@ -81,7 +90,7 @@ public class mainFrame extends JFrame {
                 String lineNumber = e.getLineNumber();
 
                 try {
-                    viewFieldsOnLine(input, structure, lineNumber);
+                    viewFieldsOnLineMultiple(input, structure, lineNumber);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -109,7 +118,7 @@ public class mainFrame extends JFrame {
     }
 
     //methods
-    public void viewFieldsOnLine(String input, String structure, String lineNumber) throws Exception {
+    public void viewFieldsOnLineMultiple(String input, String structure, String lineNumber) throws Exception {
 
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArray(structure);
@@ -123,7 +132,7 @@ public class mainFrame extends JFrame {
         String allText = v.viewFieldsInLine(input, lineNumberInt);
 
         //Append to text panel
-        allText = String.format("***Line Number %s***\n%s\n", (lineNumber), allText);    //wrap output in header/footer
+        allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
         tPanel.appendText(allText);
 
     }
@@ -132,18 +141,36 @@ public class mainFrame extends JFrame {
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
 
-        //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
-        int lineNumberInt = Integer.parseInt(lineNumber);
-        lineNumberInt = lineNumberInt - 1;
+        //multiple line numbers
+        if (lineNumber.contains(",")) {
+            String[] values = lineNumber.split(",");
+            for (String s: values) {
+                int lineNumberInt = Integer.parseInt(s);
+                lineNumberInt = lineNumberInt - 1;
 
-        //Generate viewer object and return concatenated string
-        viewer v = new viewer(fieldArray);
-        String allText = v.viewFieldsInLine(input, lineNumberInt);
+                //Generate viewer object and return concatenated string
+                viewer v = new viewer(fieldArray);
+                String allText = v.viewFieldsInLine(input, lineNumberInt);
 
-        //Append to text panel
-        allText = String.format("***Line Number %s***\n%s\n", (lineNumber), allText);    //wrap output in header/footer
-        tPanel.appendText(allText);
+                //Append to text panel
+                allText = String.format("Line Number %s\n%s\n", (s), allText);    //wrap output in header/footer
+                tPanel.appendText(allText);
+            }
+        }
+        //single line number
+        else {
+            //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
+            int lineNumberInt = Integer.parseInt(lineNumber);
+            lineNumberInt = lineNumberInt - 1;
 
+            //Generate viewer object and return concatenated string
+            viewer v = new viewer(fieldArray);
+            String allText = v.viewFieldsInLine(input, lineNumberInt);
+
+            //Append to text panel
+            allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
+            tPanel.appendText(allText);
+        }
     }
 
 }

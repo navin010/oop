@@ -10,8 +10,8 @@ public class toolbar extends JPanel implements ActionListener {
 
     //vars
     private JButton btnClear;
-    private JButton btnPanelMultiple;
-    private JButton btnPanelSingle;
+    //private JButton btnPanelMultiple;
+    //private JButton btnPanelSingle;
     private stringListener textListener;
     private buttonListener buttonListener;
 
@@ -20,21 +20,21 @@ public class toolbar extends JPanel implements ActionListener {
 
         setBorder(BorderFactory.createEtchedBorder());
 
-        btnPanelMultiple = new JButton("Multiple");
-        btnPanelSingle = new JButton("Single");
+        //btnPanelMultiple = new JButton("Multiple");
+        //btnPanelSingle = new JButton("Single");
         btnClear = new JButton("Clear");
 
-        btnPanelMultiple.addActionListener(this);
-        btnPanelSingle.addActionListener(this);
+        //btnPanelMultiple.addActionListener(this);
+        //btnPanelSingle.addActionListener(this);
         btnClear.addActionListener(this);
 
-        /*
-        setLayout(new FlowLayout(FlowLayout.LEFT));       //flow layout for left to right layout, add start position from left
-        add(btnPanelSingle);
-        add(btnPanelMultiple);
-        add(btnClear);
-        */
 
+        setLayout(new FlowLayout(FlowLayout.RIGHT));       //flow layout for left to right layout, add start position from left
+        //add(btnPanelSingle);
+        //add(btnPanelMultiple);
+        add(btnClear);
+
+        /*
         Border outerBorder = BorderFactory.createEtchedBorder();  //add empty border around title border for padding
         Border innerBorder = BorderFactory.createEmptyBorder(3,3,3,3);
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
@@ -46,6 +46,7 @@ public class toolbar extends JPanel implements ActionListener {
         add(btnPanelMultiple);
         add(Box.createHorizontalGlue());                  //glue the next buttons from this point to right
         add(btnClear);
+        */
 
     }
 
@@ -67,6 +68,7 @@ public class toolbar extends JPanel implements ActionListener {
                 //System.out.println("clear button");
             }
         }
+        /*
         else if (buttonClicked == btnPanelSingle){
             if(textListener != null){                         //ensures button listener was passed in to class
                 textListener.textEmitted("single");
@@ -79,5 +81,6 @@ public class toolbar extends JPanel implements ActionListener {
                 //System.out.println("multiple button");
             }
         }
+        */
     }
 }
