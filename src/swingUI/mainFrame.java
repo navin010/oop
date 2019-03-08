@@ -90,7 +90,7 @@ public class mainFrame extends JFrame {
                 String lineNumber = e.getLineNumber();
 
                 try {
-                    viewFieldsOnLineMultiple(input, structure, lineNumber);
+                    viewMultipleFields(input, structure, lineNumber);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -107,7 +107,7 @@ public class mainFrame extends JFrame {
                 String numberOfChars = e.getNumberOfChars();
                 String lineNumber = e.getLineNumber();
                 try {
-                    viewFieldsOnLineSingle(input, nameOfField, startPosition, numberOfChars, lineNumber);
+                    viewSingleField(input, nameOfField, startPosition, numberOfChars, lineNumber);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -118,77 +118,57 @@ public class mainFrame extends JFrame {
     }
 
     //methods
-    public void viewFieldsOnLineMultiple(String input, String structure, String lineNumber) throws Exception {
-
+    public void viewMultipleFields(String input, String structure, String lineNumber) throws Exception {
+        //create field array with multiple field values
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArray(structure);
 
-        //single line number
+        //single line number entered
         if (lineNumber.contains(",")) {
             String[] values = lineNumber.split(",");
             for (String s: values) {
-                int lineNumberInt = Integer.parseInt(s);
-                lineNumberInt = lineNumberInt - 1;
-
-                //Generate viewer object and return concatenated string
-                viewer v = new viewer(fieldArray);
-                String allText = v.viewFieldsInLine(input, lineNumberInt);
-
-                //Append to text panel
-                allText = String.format("Line Number %s\n%s\n", (s), allText);    //wrap output in header/footer
-                tPanel.appendText(allText);
+                viewData(fieldArray, input, s);
             }
         }
-        //multiple line numbers
+        //multiple line numbers entered separated by commas
         else {
-            //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
-            int lineNumberInt = Integer.parseInt(lineNumber);
-            lineNumberInt = lineNumberInt - 1;
-
-            //Generate viewer object and return concatenated string
-            viewer v = new viewer(fieldArray);
-            String allText = v.viewFieldsInLine(input, lineNumberInt);
-
-            //Append to text panel
-            allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
-            tPanel.appendText(allText);
+            viewData(fieldArray, input, lineNumber);
         }
     }
 
-    public void viewFieldsOnLineSingle(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
+    public void viewSingleField(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
+        //create field array with single field value
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
 
-        //multiple line numbers
+        //multiple line numbers entered separated by commas
         if (lineNumber.contains(",")) {
             String[] values = lineNumber.split(",");
             for (String s: values) {
-                int lineNumberInt = Integer.parseInt(s);
-                lineNumberInt = lineNumberInt - 1;
-
-                //Generate viewer object and return concatenated string
-                viewer v = new viewer(fieldArray);
-                String allText = v.viewFieldsInLine(input, lineNumberInt);
-
-                //Append to text panel
-                allText = String.format("Line Number %s\n%s\n", (s), allText);    //wrap output in header/footer
-                tPanel.appendText(allText);
+                viewData(fieldArray, input, s);
             }
         }
-        //single line number
+        //single line number entered
         else {
-            //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
-            int lineNumberInt = Integer.parseInt(lineNumber);
-            lineNumberInt = lineNumberInt - 1;
-
-            //Generate viewer object and return concatenated string
-            viewer v = new viewer(fieldArray);
-            String allText = v.viewFieldsInLine(input, lineNumberInt);
-
-            //Append to text panel
-            allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
-            tPanel.appendText(allText);
+            viewData(fieldArray, input, lineNumber);
         }
     }
+
+    public void viewData(ArrayList<field> fieldArray, String input, String lineNumber) throws Exception {
+        //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
+        int lineNumberInt = Integer.parseInt(lineNumber);
+        lineNumberInt = lineNumberInt - 1;
+
+        //Generate viewer object and return concatenated string
+        viewer v = new viewer(fieldArray);
+        String allText = v.viewFieldsInLine(input, lineNumberInt);
+
+        //Append to text panel
+        allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
+        tPanel.appendText(allText);
+    }
+
+
+
 
 }
