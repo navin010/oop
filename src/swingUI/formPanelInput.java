@@ -47,7 +47,7 @@ public class formPanelInput extends JPanel {
         labelStartPosition = new JLabel("Start Position");
         fieldStartPosition = new JTextField(10);
 
-        labelNumberOfChars = new JLabel("Number Of Chars");     //Jlabel looks like it has a max of 15 chars, otherwise messes up format
+        labelNumberOfChars = new JLabel("No. Of Chars");     //Jlabel looks like it has a max of 15 chars (default UI) otherwise messes up format. 12 chars in nimbus UI
         fieldNumberOfChars = new JTextField(10);
 
         btnSubmit = new JButton("Submit");

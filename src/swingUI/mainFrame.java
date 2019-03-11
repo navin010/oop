@@ -5,6 +5,7 @@ import swingUI.flatFile.structureReader;
 import swingUI.flatFile.viewer;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -23,6 +24,38 @@ public class mainFrame extends JFrame {
     //constructor
     public mainFrame(){
         super("Flat File Viewer");                       //call JFrame constructor
+
+        try {
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());               //sets windows look and feel
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());                                   //sets windows look and feel
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());     //default cross platform UI
+            }
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
+        /*
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, fall back to cross-platform
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        */
+
         setSize(600,500);                       //calling methods from super directly
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       //exit program when gui is closed
         setVisible(true);
