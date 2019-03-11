@@ -139,7 +139,33 @@ public class mainFrame extends JFrame {
     public void viewSingleField(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
         //create field array with single field value
         structureReader sr = new structureReader();
-        ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
+        //ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
+        ArrayList<field> fieldArray = new ArrayList<field>();
+
+        //check multiple fields entered separated by commas
+        if (nameOfField.contains(",") || startPosition.contains(",") || numberOfChars.contains(",")) {
+            System.out.println("field contains comma");
+
+            String[] nameOfFieldValues = nameOfField.split(",");
+            String[] startPositionValues = startPosition.split(",");
+            String[] numberOfCharsValues = numberOfChars.split(",");
+
+            int arrayLength = nameOfFieldValues.length;
+            for (int i=0; i<arrayLength; i++)
+            {
+                String nameOfFieldVal = nameOfFieldValues[i];
+                String startPositionVal = startPositionValues[i];
+                String numberOfCharsVal = numberOfCharsValues[i];
+
+                System.out.println("Array Length " + arrayLength);
+                System.out.println(nameOfFieldVal + ":" + startPositionVal + ":" + numberOfCharsVal);
+                fieldArray.add(new field(nameOfFieldVal,Integer.parseInt(startPositionVal),Integer.parseInt(numberOfCharsVal)));
+            }
+        }
+        else {
+            fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
+        }
+
 
         //multiple line numbers entered separated by commas
         if (lineNumber.contains(",")) {
@@ -154,6 +180,7 @@ public class mainFrame extends JFrame {
         }
     }
 
+    //common method to view data
     public void viewData(ArrayList<field> fieldArray, String input, String lineNumber) throws Exception {
         //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
         int lineNumberInt = Integer.parseInt(lineNumber);
