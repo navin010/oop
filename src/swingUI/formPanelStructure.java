@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class formPanel extends JPanel {
+public class formPanelStructure extends JPanel {
 
     //vars
     private JLabel labelInput;
@@ -21,7 +21,7 @@ public class formPanel extends JPanel {
     //private JFileChooser fileOpen;
 
     //constructor
-    public formPanel(){
+    public formPanelStructure(){
 
         Dimension dim = getPreferredSize();
         //System.out.println(dim);
@@ -29,7 +29,7 @@ public class formPanel extends JPanel {
         setPreferredSize(dim);
 
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
-        Border innerBorder = BorderFactory.createTitledBorder("Multiple Field Viewer");
+        Border innerBorder = BorderFactory.createTitledBorder("Structure Field Viewer");
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
         labelInput = new JLabel("Input File");

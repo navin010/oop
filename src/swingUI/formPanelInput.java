@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class formPanelSingleFieldSearch extends JPanel {
+public class formPanelInput extends JPanel {
 
     //vars
     private JLabel labelInput;
@@ -24,7 +24,7 @@ public class formPanelSingleFieldSearch extends JPanel {
 
 
     //constructor
-    public formPanelSingleFieldSearch(){
+    public formPanelInput(){
 
         Dimension dim = getPreferredSize();
         //System.out.println(dim);
@@ -32,7 +32,7 @@ public class formPanelSingleFieldSearch extends JPanel {
         setPreferredSize(dim);          //set panel size, default size too small
 
         Border outerBorder = BorderFactory.createEmptyBorder(5,5,5,5);  //add empty border around title border for padding
-        Border innerBorder = BorderFactory.createTitledBorder("Single Field Viewer");
+        Border innerBorder = BorderFactory.createTitledBorder("Input Field Viewer");
         setBorder(BorderFactory.createCompoundBorder(outerBorder,innerBorder));
 
         labelInput = new JLabel("Input File");

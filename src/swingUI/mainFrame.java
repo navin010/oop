@@ -13,10 +13,9 @@ public class mainFrame extends JFrame {
     //vars
     private textPanel tPanel;
     private toolbar tbar;
-    private formPanel fPanelMultiple;
-    private formPanelSingleFieldSearch fPanelSingle;
+    private formPanelStructure fPanelStructure;
+    private formPanelInput fPanelInput;
     private String globalStructure = "";
-    //static ArrayList<field> fieldArray = new ArrayList<field>();
     private CardLayout c1;
     private JPanel fPanelJoined;
     private JTabbedPane tabbedPane;
@@ -31,17 +30,17 @@ public class mainFrame extends JFrame {
         setLayout(new BorderLayout());
         tPanel = new textPanel();
         tbar = new toolbar();
-        fPanelMultiple = new formPanel();
-        fPanelSingle = new formPanelSingleFieldSearch();
+        fPanelStructure = new formPanelStructure();
+        fPanelInput = new formPanelInput();
 
         tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("Single Field",fPanelSingle);
-        tabbedPane.addTab("Multiple Field",fPanelMultiple);
+        tabbedPane.addTab("Input Fields", fPanelInput);
+        tabbedPane.addTab("Upload Fields", fPanelStructure);
 
         /*
         fPanelJoined = new JPanel(new CardLayout());
-        fPanelJoined.add(fPanelMultiple, "multiPanel");
-        fPanelJoined.add(fPanelSingle, "singlePanel");
+        fPanelJoined.add(fPanelStructure, "multiPanel");
+        fPanelJoined.add(fPanelInput, "singlePanel");
         c1 = (CardLayout) (fPanelJoined.getLayout());
 
         c1.show(fPanelJoined,"singlePanel");    //multiPanel is shown on startup by default as added to fPanelJoined first, but can be changed here
@@ -81,33 +80,33 @@ public class mainFrame extends JFrame {
         });
         */
 
-        fPanelMultiple.setFormListener(new formListener() {
+        fPanelStructure.setFormListener(new formListener() {
             @Override
             public void formEventOccured(formEvent e) {
-                System.out.println("multi");
+                System.out.println("Structure Tab");
                 String input = e.getInput();
                 String structure = e.getStructure();
                 String lineNumber = e.getLineNumber();
 
                 try {
-                    viewMultipleFields(input, structure, lineNumber);
+                    viewByStructure(input, structure, lineNumber);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
         });
 
-        fPanelSingle.setFormListener(new formListener() {
+        fPanelInput.setFormListener(new formListener() {
             @Override
             public void formEventOccured(formEvent e) {
-                System.out.println("single");
+                System.out.println("inputTab");
                 String input = e.getInput();
                 String nameOfField = e.getNameOfField();
                 String startPosition = e.getStartPosition();
                 String numberOfChars = e.getNumberOfChars();
                 String lineNumber = e.getLineNumber();
                 try {
-                    viewSingleField(input, nameOfField, startPosition, numberOfChars, lineNumber);
+                    viewByInput(input, nameOfField, startPosition, numberOfChars, lineNumber);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -118,7 +117,7 @@ public class mainFrame extends JFrame {
     }
 
     //methods
-    public void viewMultipleFields(String input, String structure, String lineNumber) throws Exception {
+    public void viewByStructure(String input, String structure, String lineNumber) throws Exception {
         //create field array with multiple field values
         structureReader sr = new structureReader();
         ArrayList<field> fieldArray = sr.createFieldArray(structure);
@@ -136,7 +135,7 @@ public class mainFrame extends JFrame {
         }
     }
 
-    public void viewSingleField(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
+    public void viewByInput(String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) throws Exception {
         //create field array with single field value
         structureReader sr = new structureReader();
         //ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
