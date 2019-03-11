@@ -141,7 +141,7 @@ public class mainFrame extends JFrame {
         //ArrayList<field> fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
         ArrayList<field> fieldArray = new ArrayList<field>();
 
-        //check multiple fields entered separated by commas
+        //check multiple fields entered separated by commas, generate field array for multiple values
         if (nameOfField.contains(",") || startPosition.contains(",") || numberOfChars.contains(",")) {
             System.out.println("field contains comma");
 
@@ -161,6 +161,7 @@ public class mainFrame extends JFrame {
                 fieldArray.add(new field(nameOfFieldVal,Integer.parseInt(startPositionVal),Integer.parseInt(numberOfCharsVal)));
             }
         }
+        //otherwise generate single field for field array
         else {
             fieldArray = sr.createFieldArraySingle(nameOfField, startPosition, numberOfChars);
         }
