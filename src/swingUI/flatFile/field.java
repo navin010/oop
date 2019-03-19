@@ -11,9 +11,9 @@ public class field {
     //constructor
     public field(String nameOfField, int startPosition, int numberOfChars){
         this.nameOfField = nameOfField;
-        this.startPosition = startPosition;
+        this.startPosition = startPosition - 1;                     //minus 1 as substring in 'flatFile.viewer reads from zero rather than from 1'
         this.numberOfChars = numberOfChars;
-        this.endPosition = startPosition + numberOfChars;
+        this.endPosition = (startPosition -1) + numberOfChars;      //minus 1 as substring in 'flatFile.viewer reads from zero rather than from 1'
     }
 
     //methods
