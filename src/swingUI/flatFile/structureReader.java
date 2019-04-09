@@ -35,6 +35,11 @@ public class structureReader {
                 }
             }
 
+            //no field name entered
+            else if (nameOfField.isEmpty()){
+                fieldArray.add(new field(values[0], Integer.parseInt(values[1]), Integer.parseInt(values[2])));
+            }
+
             //single field name entered
             else {
                 if (values[0].equals(nameOfField)) {
