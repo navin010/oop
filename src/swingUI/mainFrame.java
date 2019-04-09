@@ -215,17 +215,28 @@ public class mainFrame extends JFrame {
 
     //common method to view data
     public void viewData(ArrayList<field> fieldArray, String input, String lineNumber) throws Exception {
-        //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
-        int lineNumberInt = Integer.parseInt(lineNumber);
-        lineNumberInt = lineNumberInt - 1;
 
         //Generate viewer object and return concatenated string
         viewer v = new viewer(fieldArray);
-        String allText = v.viewFieldsInLine(input, lineNumberInt);
+        String allText;
+
+        //if line number is empty
+        if (lineNumber.isEmpty()){
+            allText = v.viewFieldsInAllLines(input);
+        }
+
+        //if line number is not empty
+        else {
+            //line number formatting, convert to int. Minus 1 as java arrays start from 0 and lines in editors start from 1
+            int lineNumberInt = Integer.parseInt(lineNumber);
+            lineNumberInt = lineNumberInt - 1;
+            allText = v.viewFieldsInLine(input, lineNumberInt);
+            allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
+        }
 
         //Append to text panel
-        allText = String.format("Line Number %s\n%s\n", (lineNumber), allText);    //wrap output in header/footer
         tPanel.appendText(allText);
+
     }
 
 
