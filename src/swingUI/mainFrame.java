@@ -120,9 +120,9 @@ public class mainFrame extends JFrame {
                 String input = e.getInput();
                 String structure = e.getStructure();
                 String lineNumber = e.getLineNumber();
-
+                String nameOfField = e.getNameOfField();
                 try {
-                    viewByStructure(input, structure, lineNumber);
+                    viewByStructure(input, structure, lineNumber, nameOfField);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -150,19 +150,19 @@ public class mainFrame extends JFrame {
     }
 
     //methods
-    public void viewByStructure(String input, String structure, String lineNumber) throws Exception {
+    public void viewByStructure(String input, String structure, String lineNumber, String nameOfField) throws Exception {
         //create field array with multiple field values
         structureReader sr = new structureReader();
-        ArrayList<field> fieldArray = sr.createFieldArray(structure);
+        ArrayList<field> fieldArray = sr.createFieldArray(structure, nameOfField);
 
-        //single line number entered
+        //multiple line numbers entered separated by commas
         if (lineNumber.contains(",")) {
             String[] values = lineNumber.split(",");
             for (String s: values) {
                 viewData(fieldArray, input, s);
             }
         }
-        //multiple line numbers entered separated by commas
+        //single line number entered
         else {
             viewData(fieldArray, input, lineNumber);
         }

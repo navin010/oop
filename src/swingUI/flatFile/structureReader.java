@@ -14,7 +14,7 @@ public class structureReader {
     }
 
     //methods
-    public ArrayList<field> createFieldArray(String filePath) throws Exception{
+    public ArrayList<field> createFieldArray(String filePath, String nameOfField) throws Exception{
 
         clearFieldArray();              //blank the field array otherwise fields are duplicated for sr structureReader reader in main frame
 
@@ -22,8 +22,27 @@ public class structureReader {
 
         String line;
         while ((line = fileStructureObj.reader.readLine()) != null) {
-            String[] values = line.split(",");
-            fieldArray.add(new field(values[0],Integer.parseInt(values[1]),Integer.parseInt(values[2])));
+            String[] values = line.split(",");                              //split line values by comma
+
+            //multiple field names entered separated by commas
+            if (nameOfField.contains(",")) {
+                String[] fieldNames = nameOfField.split(",");                //split name of field values
+                //loop through field names array
+                for (String f: fieldNames) {
+                    if (values[0].equals(f)) {
+                        fieldArray.add(new field(values[0], Integer.parseInt(values[1]), Integer.parseInt(values[2])));
+                    }
+                }
+            }
+
+            //single field name entered
+            else {
+                if (values[0].equals(nameOfField)) {
+                    fieldArray.add(new field(values[0], Integer.parseInt(values[1]), Integer.parseInt(values[2])));
+                }
+            }
+
+
         }
         fileStructureObj.closeFile();
 

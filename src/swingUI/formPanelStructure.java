@@ -12,9 +12,11 @@ public class formPanelStructure extends JPanel {
     private JLabel labelInput;
     private JLabel labelStructure;
     private JLabel labelLineNumber;
+    private JLabel labelNameOfField;
     private JTextField fieldInput;
     private JTextField fieldStructure;
     private JTextField fieldLineNumber;
+    private JTextField fieldNameOfField;
     private JButton btnSubmit;
     private formListener fListener;
 
@@ -34,10 +36,16 @@ public class formPanelStructure extends JPanel {
 
         labelInput = new JLabel("Input File");
         fieldInput = new JTextField(10);
+
         labelStructure = new JLabel("Structure File");
         fieldStructure = new JTextField(10);
+
         labelLineNumber = new JLabel("Line Number");
         fieldLineNumber = new JTextField(10);
+
+        labelNameOfField = new JLabel("Name Of Field");
+        fieldNameOfField = new JTextField(10);
+
         btnSubmit = new JButton("Submit");
 
 
@@ -47,8 +55,9 @@ public class formPanelStructure extends JPanel {
                 String input = fieldInput.getText();
                 String structure = fieldStructure.getText();
                 String lineNumber = fieldLineNumber.getText();
+                String nameOfField = fieldNameOfField.getText();
                 //form event is basically a default java event extended with a few vars
-                formEvent event = new formEvent(this, input, structure, lineNumber);
+                formEvent event = new formEvent(this, input, structure, lineNumber, nameOfField);
                 //check if fListener has been passed in from the main frame via method setFormListener, if it has not fListener=null
                 if (fListener != null){
                     fListener.formEventOccured(event);      //call formEventOccured method in main frame with new event
@@ -110,10 +119,26 @@ public class formPanelStructure extends JPanel {
 
         /////Fourth Row/////
         gc.weightx = 1;                     //size relative to other cells
-        gc.weighty = 2;                     //size relative to other cells
+        gc.weighty = 0.1;                   //size relative to other cells
+
+        gc.gridx = 0;
+        gc.gridy = 3;
+        gc.anchor = GridBagConstraints.LINE_END;
+        gc.insets = new Insets(0,0,0,5);
+        add(labelNameOfField, gc);
 
         gc.gridx = 1;
         gc.gridy = 3;
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.insets = new Insets(0,0,0,0);
+        add(fieldNameOfField, gc);
+
+        /////Fifth Row/////
+        gc.weightx = 1;                     //size relative to other cells
+        gc.weighty = 2;                     //size relative to other cells
+
+        gc.gridx = 1;
+        gc.gridy = 4;
         gc.anchor = GridBagConstraints.FIRST_LINE_START;
         gc.insets = new Insets(0,0,0,0);
         add(btnSubmit, gc);

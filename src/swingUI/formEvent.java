@@ -17,11 +17,12 @@ public class formEvent extends EventObject {            //EventObject is root of
         super(source);                  //source The object on which the Event initially occurred.
     }
 
-    public formEvent(Object source, String input, String structure, String lineNumber) {
+    public formEvent(Object source, String input, String structure, String lineNumber, String nameOfField) {
         super(source);
         this.input = input;
         this.structure = structure;
         this.lineNumber = lineNumber;
+        this.nameOfField = nameOfField;
     }
 
     public formEvent(Object source, String input, String nameOfField, String startPosition, String numberOfChars, String lineNumber) {

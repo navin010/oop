@@ -1,2 +1,2 @@
-C:/Java/OOP/src/flatFileViewer/input.txt
-C:/Java/OOP/src/flatFileViewer/structure.txt
+C:\Java\OOP\src\swingUI\flatFile\input.txt
+C:\Java\OOP\src\swingUI\flatFile\structure.txt
